@@ -1,3 +1,6 @@
+@extends('layout')
+
+@section('content')
 <div class="container mx-auto p-4">
     <h1 class="text-2xl font-bold mb-4">Danh sách tác giả</h1>
     <a href="{{ route('authors.create') }}" class="bg-green-600 text-white px-3 py-1 rounded mb-4 inline-block">Thêm mới</a>
@@ -36,3 +39,4 @@
         </table>
     @endif
 </div>
+@endsection
