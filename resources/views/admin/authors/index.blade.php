@@ -18,6 +18,7 @@
                     <th class="px-4 py-2 border">Nationality</th>
                     <th class="px-4 py-2 border">Birth Date</th>
                     <th class="px-4 py-2 border">Active</th>
+                    <th class="px-4 py-2 border">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,7 +32,13 @@
                         <td class="px-4 py-2 border">{{ $author->birth_date }}</td>
                         <td class="px-4 py-2 border">{{ $author->is_active ? 'Yes' : 'No' }}</td>
                         <td class="px-4 py-2 border">
-                            <a href="{{ route('admin.authors.show', $author) }}" class="text-blue-600">View</a>
+                            <a href="{{ route('admin.authors.show', $author) }}" class="text-blue-600 mr-2">View</a>
+                            <a href="{{ route('admin.authors.edit', $author) }}" class="text-yellow-600 mr-2">Edit</a>
+                            <form action="{{ route('admin.authors.destroy', $author) }}" method="POST" class="inline" onsubmit="return confirm('Bạn có chắc chắn muốn xóa tác giả này?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-600">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

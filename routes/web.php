@@ -17,7 +17,7 @@ Route::middleware(['auth'])->group(function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
     Route::resource('authors', AuthorController::class)
-    ->only(['index','create','store','show'])
+    ->only(['index','create','store','show','edit','update','destroy'])
     ->names('admin.authors');
 });
 

@@ -36,7 +36,7 @@ class AuthorController extends Controller
             'email'       => 'required|email|unique:authors,email',
             'birth_date'  => 'nullable|date',
             'nationality' => 'nullable|string|max:100',
-            'bio'         => 'nullable|string',
+            'bio'         => 'required|string',
             'avatar_url'  => 'nullable|url',
             'is_active'   => 'boolean',
         ]);
@@ -61,7 +61,8 @@ class AuthorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $author = \App\Models\Author::findOrFail($id);
+        return view('admin.authors.edit', compact('author'));
     }
 
     /**
@@ -69,7 +70,22 @@ class AuthorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $author = \App\Models\Author::findOrFail($id);
+
+        $data = $request->validate([
+            'full_name'   => 'nullable|string|max:255',
+            'pen_name'    => 'required|string|max:255',
+            'email'       => 'required|email|unique:authors,email,' . $author->id,
+            'birth_date'  => 'nullable|date',
+            'nationality' => 'nullable|string|max:100',
+            'bio'         => 'required|string',
+            'avatar_url'  => 'nullable|url',
+            'is_active'   => 'boolean',
+        ]);
+
+        $author->update($data);
+
+        return redirect()->route('admin.authors.show', $author);
     }
 
     /**
@@ -77,6 +93,9 @@ class AuthorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $author = \App\Models\Author::findOrFail($id);
+        $author->delete();
+
+        return redirect()->route('admin.authors.index');
     }
 }
