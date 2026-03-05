@@ -14,7 +14,7 @@ class AuthorController extends Controller
     {
         // list all authors
         $authors = \App\Models\Author::all();
-        return view('authors.index', compact('authors'));
+        return view('admin.authors.index', compact('authors'));
     }
 
     /**
