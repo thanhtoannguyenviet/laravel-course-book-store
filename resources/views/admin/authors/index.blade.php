@@ -31,7 +31,7 @@
                         <td class="px-4 py-2 border">{{ $author->birth_date }}</td>
                         <td class="px-4 py-2 border">{{ $author->is_active ? 'Yes' : 'No' }}</td>
                         <td class="px-4 py-2 border">
-                            <a href="{{ route('authors.show', $author) }}" class="text-blue-600">View</a>
+                            <a href="{{ route('admin.authors.show', $author) }}" class="text-blue-600">View</a>
                         </td>
                     </tr>
                 @endforeach

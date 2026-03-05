@@ -22,7 +22,7 @@
         <p><strong>Active:</strong> {{ $author->is_active ? 'Yes' : 'No' }}</p>
     </div>
 
-    <a href="{{ route('authors.index') }}" class="inline-block mt-4 text-blue-600">Back to list</a>
+    <a href="{{ route('admin.authors.index') }}" class="inline-block mt-4 text-blue-600">Back to list</a>
 </div>
 
 @endsection
