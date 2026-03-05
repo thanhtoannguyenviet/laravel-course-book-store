@@ -22,7 +22,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        return view('authors.create');
+        return view('admin.authors.create');
     }
 
     /**
@@ -43,7 +43,7 @@ class AuthorController extends Controller
 
         $author = \App\Models\Author::create($data);
 
-        return redirect()->route('authors.show', $author);
+        return redirect()->route('admin.authors.show', $author);
     }
 
     /**
@@ -52,7 +52,7 @@ class AuthorController extends Controller
     public function show(string $id)
     {
         $author = \App\Models\Author::findOrFail($id);
-        return view('authors.show', compact('author'));
+        return view('admin.authors.show', compact('author'));
     }
 
 
