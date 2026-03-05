@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -19,6 +20,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('authors', AuthorController::class)
     ->only(['index','create','store','show','edit','update','destroy'])
     ->names('admin.authors');
+    Route::resource('users', UserController::class)
+    ->only(['index','create','store','show','edit','update','destroy'])
+    ->names('admin.users');
 });
 
 
