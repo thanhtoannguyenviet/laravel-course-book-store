@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         return back()->withErrors(['email' => 'Invalid credentials.']);
     }
-    public function logout()
+    public function logout(Request $request)
     {
         auth()->logout();
         $request->session()->invalidate();
