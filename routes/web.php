@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,6 +24,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class)
     ->only(['index','create','store','show','edit','update','destroy'])
     ->names('admin.users');
+    Route::resource('categories', CategoryController::class)
+    ->only(['index','create','store','show','edit','update','destroy'])
+    ->names('admin.categories');
 });
 
 
