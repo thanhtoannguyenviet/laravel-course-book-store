@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BookController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,6 +28,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('categories', CategoryController::class)
     ->only(['index','create','store','show','edit','update','destroy'])
     ->names('admin.categories');
+    Route::resource('books', BookController::class)
+    ->only(['index','create','store','show','edit','update','destroy'])
+    ->names('admin.books');
 });
 
 
