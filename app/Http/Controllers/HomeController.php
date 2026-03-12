@@ -49,21 +49,17 @@ class HomeController extends Controller
 
         return view('welcome', compact('categories', 'featuredBooks', 'newBooks', 'searchResults', 'searchQuery'));
     }
+
     public function shop(Request $request)
     {
         $query = Book::with('author', 'category')->where('is_active', true);
 
-        // Filter by category
-        if ($request->filled('category')) {
-            $categories = is_array($request->category) ? $request->category : [$request->category];
+        // Filter by category (multiple selection)
+        $categories = (array) $request->input('category', []);
+        if (count($categories) > 0) {
             $query->whereIn('category_id', $categories);
         }
 
-        // Filter by author
-        if ($request->filled('author')) {
-            $authors = is_array($request->author) ? $request->author : [$request->author];
-            $query->whereIn('author_id', $authors);
-        }
 
         // Search
         if ($request->filled('search')) {
@@ -78,12 +74,12 @@ class HomeController extends Controller
                     });
             });
         }
-
+        if($request->
+)
         $books = $query->paginate(12);
 
         $categories = Category::where('is_active', true)->get();
-        $authors = Author::where('is_active', true)->get();
 
-        return view('shop', compact('books', 'categories', 'authors'));
+        return view('shop', compact('books', 'categories'));
     }
 }

@@ -59,7 +59,9 @@
 </div>
 <div class="flex gap-3 overflow-x-auto px-4 no-scrollbar pb-2">
 @foreach($categories as $index => $category)
-<button class="flex-shrink-0 px-5 py-2 rounded-full {{ $index == 0 ? 'bg-primary text-white' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400' }} text-sm font-medium shadow-sm">{{ $category->name }}</button>
+<a href="{{ route('shop', ['category' => [$category->id]]) }}" class="flex-shrink-0 px-5 py-2 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-sm font-medium shadow-sm">
+    {{ $category->name }}
+</a>
 @endforeach
 </div>
 </section>

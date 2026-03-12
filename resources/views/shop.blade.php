@@ -20,35 +20,24 @@
 <!-- Categories Filter -->
 <div class="mb-6">
 <h4 class="font-semibold mb-2">Categories</h4>
-<div class="space-y-2">
+<div class="space-y-2 max-h-[30vh] overflow-y-auto">
 @foreach($categories as $category)
 <label class="flex items-center">
-<input type="checkbox" class="category-filter" value="{{ $category->id }}" {{ in_array($category->id, (array) request('category', [])) ? 'checked' : '' }}>
+<input type="checkbox" name="category[]" class="category-filter" value="{{ $category->id }}" {{ in_array($category->id, (array) request('category', [])) ? 'checked' : '' }}>
 <span class="ml-2">{{ $category->name }}</span>
 </label>
 @endforeach
 </div>
 </div>
 
-<!-- Authors Filter -->
-<div class="mb-6">
-<h4 class="font-semibold mb-2">Authors</h4>
-<div class="space-y-2">
-@foreach($authors as $author)
-<label class="flex items-center">
-<input type="checkbox" class="author-filter" value="{{ $author->id }}" {{ in_array($author->id, (array) request('author', [])) ? 'checked' : '' }}>
-<span class="ml-2">{{ $author->full_name }}</span>
-</label>
-@endforeach
-</div>
-</div>
+
 
 <button id="apply-filters" class="w-full bg-primary text-white py-2 rounded-lg">Apply Filters</button>
 <button id="clear-filters" class="w-full bg-gray-500 text-white py-2 rounded-lg mt-2">Clear Filters</button>
 </aside>
 
 <!-- Books Grid -->
-<main class="flex-1 p-4">
+<main class="flex-1 p-4 ml-64">
 <div class="flex items-center justify-between mb-4">
 <h2 class="text-2xl font-bold">All Books</h2>
 <span class="text-sm text-slate-500">{{ $books->total() }} books found</span>
@@ -102,17 +91,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     applyFiltersBtn.addEventListener('click', function() {
         const selectedCategories = Array.from(document.querySelectorAll('.category-filter:checked')).map(cb => cb.value);
-        const selectedAuthors = Array.from(document.querySelectorAll('.author-filter:checked')).map(cb => cb.value);
 
         const url = new URL(window.location);
-        url.searchParams.delete('category');
-        url.searchParams.delete('author');
+        // reset pagination when applying new filters
+        url.searchParams.delete('page');
+        // clear existing category params
+        Array.from(url.searchParams.keys()).forEach(key => {
+            if (key.startsWith('category')) url.searchParams.delete(key);
+        });
 
         selectedCategories.forEach(cat => {
             url.searchParams.append('category[]', cat);
-        });
-        selectedAuthors.forEach(auth => {
-            url.searchParams.append('author[]', auth);
         });
 
         window.location.href = url.toString();
