@@ -26,7 +26,7 @@ class HomeController extends Controller
         $newBooks = Book::with('author', 'category')
             ->where('is_active', true)
             ->orderBy('created_at', 'desc')
-            ->limit(8)
+            ->limit(4)
             ->get();
 
         // Tìm kiếm sách nếu có query
@@ -60,7 +60,6 @@ class HomeController extends Controller
             $query->whereIn('category_id', $categories);
         }
 
-
         // Search
         if ($request->filled('search')) {
             $search = $request->search;
@@ -74,10 +73,13 @@ class HomeController extends Controller
                     });
             });
         }
+
+        // dd($query->toSql(), $query->getBindings()); // Debug SQL query and bindings
         $books = $query->paginate(12);
 
         $categories = Category::where('is_active', true)->get();
 
         return view('shop', compact('books', 'categories'));
     }
+
 }
