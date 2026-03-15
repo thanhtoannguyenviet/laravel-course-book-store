@@ -24,8 +24,8 @@
 <div class="grid grid-cols-2 gap-4">
 @foreach($searchResults as $book)
 <!-- Book Card -->
-<div class="bg-white dark:bg-slate-800 rounded-xl p-3 shadow-sm flex flex-col gap-2">
-<div class="aspect-[2/3] w-full rounded-lg overflow-hidden bg-slate-100 mb-1">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg flex flex-col gap-3 hover:shadow-xl transition-shadow">
+<div class="aspect-[3/4] w-full rounded-lg overflow-hidden bg-slate-100 mb-2">
 @if($book->cover_url)
 <img class="w-full h-full object-cover" data-alt="{{ $book->title }} book cover" src="{{ $book->cover_url }}"/>
 @else
@@ -73,6 +73,40 @@
 </div>
 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
 @foreach($featuredBooks as $book)
+<!-- Book Card -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg flex flex-col gap-3 hover:shadow-xl transition-shadow">
+<div class="aspect-[3/4] w-full rounded-lg overflow-hidden bg-slate-100 mb-2">
+@if($book->cover_url)
+<img class="w-full h-full object-contain" data-alt="{{ $book->title }} book cover" src="{{ $book->cover_url }}"/>
+@else
+<div class="w-full h-full bg-slate-200 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400">auto_stories</span>
+</div>
+@endif
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="text-sm font-bold line-clamp-1">{{ $book->title }}</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">{{ $book->author->full_name ?? 'Unknown' }}</p>
+<div class="flex items-center justify-between mt-1">
+<span class="text-sm font-bold text-primary">{{ number_format($book->selling_price, 0, ',', '.') }}VND</span>
+<button class="p-1 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+@endforeach
+</div>
+</section>
+
+<!-- New Books Section -->
+<section class="px-4 py-4">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold tracking-tight">New Books</h3>
+<a class="text-sm font-medium text-primary" href="{{ route('shop') }}">See All</a>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+@foreach($newBooks as $book)
 <!-- Book Card -->
 <div class="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg flex flex-col gap-3 hover:shadow-xl transition-shadow">
 <div class="aspect-[3/4] w-full rounded-lg overflow-hidden bg-slate-100 mb-2">
