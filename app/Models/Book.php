@@ -7,6 +7,7 @@ use App\Models\Category;
 
 class Book extends Model
 {
+    use \Illuminate\Database\Eloquent\Factories\HasFactory;
     // add fillable fields as needed
     protected $fillable = ['title', 'description', 'cover_url', 'is_active', 'original_price', 'selling_price', 'stock_quantity', 'sold_quantity', 'author_id', 'category_id'];
 

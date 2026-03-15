@@ -74,8 +74,6 @@ class HomeController extends Controller
                     });
             });
         }
-        if($request->
-)
         $books = $query->paginate(12);
 
         $categories = Category::where('is_active', true)->get();
