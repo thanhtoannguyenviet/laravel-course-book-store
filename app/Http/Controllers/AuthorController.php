@@ -37,9 +37,14 @@ class AuthorController extends Controller
             'birth_date'  => 'nullable|date',
             'nationality' => 'nullable|string|max:100',
             'bio'         => 'required|string',
-            'avatar_url'  => 'nullable|url',
             'is_active'   => 'boolean',
+            'avatar_url'  => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        if ($request->hasFile('avatar_url')) {
+            $path = $request->file('avatar_url')->store('images', 'public');
+            $data['avatar_url'] = asset('storage/' . $path);
+        }
 
         $author = \App\Models\Author::create($data);
 
@@ -79,9 +84,14 @@ class AuthorController extends Controller
             'birth_date'  => 'nullable|date',
             'nationality' => 'nullable|string|max:100',
             'bio'         => 'required|string',
-            'avatar_url'  => 'nullable|url',
             'is_active'   => 'boolean',
+            'avatar_url'  => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        if ($request->hasFile('avatar_url')) {
+            $path = $request->file('avatar_url')->store('images', 'public');
+            $data['avatar_url'] = asset('storage/' . $path);
+        }
 
         $author->update($data);
 
