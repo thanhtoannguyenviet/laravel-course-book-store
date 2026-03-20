@@ -4,7 +4,7 @@
 <div class="container mx-auto p-4">
     <h1 class="text-2xl font-bold mb-4">Thêm tác giả mới</h1>
 
-    <form action="{{ route('admin.authors.store') }}" method="post">
+    <form action="{{ route('admin.authors.store') }}" method="post" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-2">
@@ -45,7 +45,7 @@
 
         <div class="mb-2">
             <label class="block">Avatar URL</label>
-            <input type="url" name="avatar_url" value="{{ old('avatar_url') }}" class="border p-1 w-full">
+            <input type="file" name="avatar_url" value="{{ old('avatar_url') }}" class="border p-1 w-full" accept="image/*">
             @error('avatar_url')<p class="text-red-600">{{ $message }}</p>@enderror
         </div>
 

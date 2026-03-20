@@ -7,6 +7,7 @@ use App\Models\Book;
 
 class Category extends Model
 {
+    use \Illuminate\Database\Eloquent\Factories\HasFactory;
     // allow mass assignment if you need it
     protected $fillable = ['name', 'description', 'cover_url', 'is_active'];
 
