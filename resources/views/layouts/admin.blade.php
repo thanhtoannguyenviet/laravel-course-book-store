@@ -19,11 +19,7 @@
                     <i class="fas fa-users mr-3"></i> Quản lý Tác giả
                 </a>
                 <a href="{{ route('admin.users.index') }}" class="flex items-center py-3 px-6 hover:bg-slate-700 {{ request()->routeIs('admin.users.*') ? 'bg-slate-700 border-l-4 border-blue-500' : '' }}">
-<<<<<<< feature-2
                     <i class="fas fa-user mr-3"></i> Quản lý User
-=======
-                    <i class="fas fa-user mr-3"></i> Quản lý Người dùng 1
->>>>>>> master
                 </a>
                 <a href="{{ route('admin.categories.index') }}" class="flex items-center py-3 px-6 hover:bg-slate-700 {{ request()->routeIs('admin.categories.*') ? 'bg-slate-700 border-l-4 border-blue-500' : '' }}">
                     <i class="fas fa-tags mr-3"></i> Quản lý Danh mục
