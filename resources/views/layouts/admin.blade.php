@@ -13,7 +13,7 @@
             <div class="p-6 text-2xl font-bold border-b border-slate-700">My Admin</div>
             <nav class="mt-6">
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center py-3 px-6 hover:bg-slate-700 {{ request()->routeIs('admin.dashboard') ? 'bg-slate-700 border-l-4 border-blue-500' : '' }}">
-                    <i class="fas fa-home mr-3"></i> Dashboard
+                    <i class="fas fa-home mr-3"></i> Trang chủ
                 </a>
                 <a href="{{ route('admin.authors.index') }}" class="flex items-center py-3 px-6 hover:bg-slate-700 {{ request()->routeIs('admin.authors.*') ? 'bg-slate-700 border-l-4 border-blue-500' : '' }}">
                     <i class="fas fa-users mr-3"></i> Quản lý Tác giả
